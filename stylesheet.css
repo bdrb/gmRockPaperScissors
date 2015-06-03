@@ -1,0 +1,32 @@
+div {
+	border: 1px, #000fff;
+	display: inline-block;
+}
+.card{
+	height: 100px;
+	width: 100px;
+	background-color: cornflowerblue;
+}
+.card_s{
+	height: 100px;
+	width: 100px;
+	background-color: silver;
+}
+.card_c{
+	height: 100px;
+	width: 100px;
+	background-color: coral;
+}
+.card_p{
+	height: 100px;
+	width: 100px;
+	background-color: purple;
+}
+
+#fight{
+	height: 50px;
+	width: 50px;
+	background-color: darksalmon;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
