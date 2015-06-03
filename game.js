@@ -20,7 +20,7 @@ var get_card_color = function(state){
 			break;
 		case 3:
 			res = "purple";
-			break;	
+			break;
 	}
 	return res;
 }
@@ -40,7 +40,7 @@ var get_card_class = function(state){
 			break;
 		case 3:
 			res = "card_p";
-			break;	
+			break;
 	}
 	return res;
 }
@@ -80,7 +80,7 @@ var fight = function($op){
 			else if(me_state === 2)
 				res = "win";
 			else if(me_state === 3)
-				res = "void";
+				res = "#void";
 			break;
 	}
 	return res;
@@ -89,19 +89,19 @@ var fight = function($op){
 $(document).ready(function()
 {
 	//init();
-	
+
 	$('#me').click(function(){
-		
+
 		if(me_state < 3)
 			me_state ++;
-		else 	
+		else
 			me_state = 1;
-				
+
 		//var cur_class = get_card_class(me_state);
 		//$('#me').toggleClass(cur_class);
 		var cur_color = get_card_color(me_state);
 		$('#me').css('background-color', cur_color);
-		
+
 	});
 	$('#fight').click(function(){
 		if(me_state !== 0){
