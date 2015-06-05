@@ -1,3 +1,5 @@
+
+var cardsCount = 0;
 var meCards = [];
 var opCards = [];
 
@@ -44,7 +46,10 @@ var get_card_class = function(state){
 	return res;
 }
 
-var init = function(){
+var init = function($me, $op){
+
+
+
 	$('#me').toggleClass('card');
 	$('#op').toggleClass('card');
 }
@@ -93,7 +98,7 @@ var fightResult = function(me, op){
 
 }
 
-var fight = function(me, op){
+var fight = function(){
 
 	for(var i = 0; i < meCards.length; i++){
 		if(meCards[i].state == 0)
@@ -161,6 +166,20 @@ var Card = function(state, elem){
 $(document).ready(function()
 {
 	//init();
+
+	// if(cardsCount === 0){
+	// 	cardsCount = 1;
+	// }
+	//
+	// for (var i = 0 ; i < cardsCount ; i++){
+	// 		$("me-cards").append("<div id = 'me" + i + "' class = 'card'></div>");
+	// 		$("op-cards").append("<div id = 'op" + i + "' class = 'card'></div>");
+	//
+	// 		meCards[i] = new Card(0, $('#me' + i));
+	// 		opCards[i] = new Card(0, $('#op' + i));
+	// }
+
+
 
 	for (var i = 0 ; i < 3 ; i++){
 		meCards[i] = new Card(0, $('#me' + i));

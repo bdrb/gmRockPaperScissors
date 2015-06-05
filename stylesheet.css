@@ -1,5 +1,5 @@
 div {
-	border: 1px, #000fff;
+	/*border: 1px solid black;*/
 	display: inline-block;
 }
 .card{
@@ -23,10 +23,33 @@ div {
 	background-color: purple;
 }
 
+#me-cards{
+
+}
+
 #fight{
 	height: 50px;
 	width: 50px;
 	background-color: darksalmon;
 	margin-top: 25px;
 	margin-bottom: 25px;
+}
+
+#main{
+	display: block;
+
+}
+
+#res{
+	display: block;
+	height: 50px;
+	width: 200px;
+	border: 1px solid black;
+}
+
+#settings{
+	display: block;
+	height: 50px;
+	width: 200px;
+	border: 1px solid black;
 }
