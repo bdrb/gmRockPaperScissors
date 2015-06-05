@@ -3,26 +3,33 @@ div {
 	display: inline-block;
 }
 .card{
+	margin: 2px, 2px, 2px, 2px;
+	padding:  2px, 2px, 2px, 2px;
 	height: 100px;
 	width: 100px;
 	background-color: cornflowerblue;
 }
 .card_s{
+	margin: 2px, 2px, 2px, 2px;
 	height: 100px;
 	width: 100px;
 	background-color: silver;
 }
 .card_c{
+	margin: 2px, 2px, 2px, 2px;
 	height: 100px;
 	width: 100px;
 	background-color: coral;
 }
 .card_p{
+	margin: 2px, 2px, 2px, 2px;
 	height: 100px;
 	width: 100px;
 	background-color: purple;
 }
-
+.cards{
+	display: inline-block;
+}
 #me-cards{
 
 }
@@ -36,7 +43,7 @@ div {
 }
 
 #main{
-	display: block;
+	display: inline-block;
 
 }
 

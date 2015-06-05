@@ -138,14 +138,30 @@ var fight = function(){
 }
 
 
-var cardClick = function(card){
+var cardClick = function(cardId){
+	var card = "";
+	for(var i = 0; i < meCards.length; i++){
+			if(meCards[i].id == cardId){
+					card = meCards[i];
+					break;
+			}
+	}
+	if(card == ""){
+		for(var i = 0; i < opCards.length; i++){
+				if(opCards[i].id == cardId){
+						card = opCards[i];
+						return;
+				}
+		}
+	}
+
 	if(card.state < 3) card.state++;
 	else               card.state = 1;
 
 	var cur_class = get_card_class(card.state);
-	if(card.elem.hasClass('card')){
-		card.elem.removeClass('card');
-	}
+	// if(card.elem.hasClass('card')){
+	// 	card.elem.removeClass('card');
+	// }
 	if(card.elem.hasClass('card_s')){
 		card.elem.removeClass('card_s');
 	}
@@ -158,7 +174,8 @@ var cardClick = function(card){
 	card.elem.addClass(cur_class);
 }
 
-var Card = function(state, elem){
+var Card = function(id, state, elem){
+	this.id = id;
 	this.state = state,
 	this.elem = elem
 }
@@ -167,37 +184,27 @@ $(document).ready(function()
 {
 	//init();
 
-	// if(cardsCount === 0){
-	// 	cardsCount = 1;
-	// }
-	//
-	// for (var i = 0 ; i < cardsCount ; i++){
-	// 		$("me-cards").append("<div id = 'me" + i + "' class = 'card'></div>");
-	// 		$("op-cards").append("<div id = 'op" + i + "' class = 'card'></div>");
-	//
-	// 		meCards[i] = new Card(0, $('#me' + i));
-	// 		opCards[i] = new Card(0, $('#op' + i));
-	// }
-
-
-
-	for (var i = 0 ; i < 3 ; i++){
-		meCards[i] = new Card(0, $('#me' + i));
-		opCards[i] = new Card(0, $('#op' + i));
+	if(cardsCount === 0){
+		cardsCount = 5;
 	}
 
-	meCards[0].elem.click(function(){
-		cardClick(meCards[0]);
-	});
-	meCards[1].elem.click(function(){
-		cardClick(meCards[1]);
-	});
-	meCards[2].elem.click(function(){
-		cardClick(meCards[2]);
+	for (var i = cardsCount - 1 ; i >= 0 ; i--){
+			$("#me-cards").append("<div id = 'me" + i + "' class = 'card'></div>");
+			meCards[i] = new Card("me" + i, 0, $('#me' + i));
+	}
+
+	for (var i = 0 ; i < cardsCount ; i++){
+			$("#op-cards").append("<div id = 'op" + i + "' class = 'card'></div>");
+			opCards[i] = new Card("op" + i, 0, $('#op' + i));
+	}
+
+	$(".card").on('click', function(){
+		cardClick($(this).prop("id"));
 	});
 
-	$('#fight').click(function(){
 
-				$('#res').html(fight());
-		});
+	 $('#fight').click(function(){
+
+	 			$('#res').html(fight());
+	 	});
 });
