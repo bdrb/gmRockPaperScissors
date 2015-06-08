@@ -1,5 +1,5 @@
 
-var cardsCount = 0;
+var cardsCount = 3;
 var meCards = [];
 var opCards = [];
 
@@ -137,7 +137,6 @@ var fight = function(){
 	return res;
 }
 
-
 var cardClick = function(cardId){
 	var card = "";
 	for(var i = 0; i < meCards.length; i++){
@@ -180,13 +179,42 @@ var Card = function(id, state, elem){
 	this.elem = elem
 }
 
+var init = function ($meCards, $opCards) {
+
+    $meCards.empty();
+    $opCards.empty();
+
+    meCards = [];
+    opCards = [];
+
+    //for (var i = meCards.length - 1 ; i >= 0 ; i--) {
+    //    meCards.shift();
+    //}
+    //for (var i = opCards.length - 1 ; i >= 0 ; i--) {
+    //    opCards.shift();
+    //}
+
+    for (var i = cardsCount - 1 ; i >= 0 ; i--) {
+        $meCards.append("<div id = 'me" + i + "' class = 'card'></div>");
+        meCards[i] = new Card("me" + i, 0, $('#me' + i));
+    }
+
+    for (var i = 0 ; i < cardsCount ; i++) {
+        $opCards.append("<div id = 'op" + i + "' class = 'card'></div>");
+        opCards[i] = new Card("op" + i, 0, $('#op' + i));
+    }
+}
+
 $(document).ready(function()
 {
-	//init();
+    if (cardsCount === 0) {
+        cardsCount = 1;
+    }
 
-	if(cardsCount === 0){
-		cardsCount = 5;
-	}
+    //init($("#me-cards"), $("#op-cards"));
+    
+    $('#cards-count').html(cardsCount);
+	
 
 	for (var i = cardsCount - 1 ; i >= 0 ; i--){
 			$("#me-cards").append("<div id = 'me" + i + "' class = 'card'></div>");
@@ -197,14 +225,23 @@ $(document).ready(function()
 			$("#op-cards").append("<div id = 'op" + i + "' class = 'card'></div>");
 			opCards[i] = new Card("op" + i, 0, $('#op' + i));
 	}
-
+    
 	$(".card").on('click', function(){
 		cardClick($(this).prop("id"));
 	});
+    
+    $('#fight').click(function(){
+        $('#res').html(fight());
+    });
 
-
-	 $('#fight').click(function(){
-
-	 			$('#res').html(fight());
-	 	});
+    $('#cards-count').click(function () {
+        if (cardsCount == 10) {
+            cardsCount = 1;
+        }
+        else {
+            cardsCount++;
+        }
+        $('#cards-count').html(cardsCount);
+        init($("#me-cards"), $("#op-cards"));
+    });
 });

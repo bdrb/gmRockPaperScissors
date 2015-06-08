@@ -3,6 +3,7 @@ div {
 	display: inline-block;
 }
 .card{
+    border: 2px solid white;
 	margin: 2px, 2px, 2px, 2px;
 	padding:  2px, 2px, 2px, 2px;
 	height: 100px;
@@ -10,18 +11,21 @@ div {
 	background-color: cornflowerblue;
 }
 .card_s{
+    border: 2px solid white;
 	margin: 2px, 2px, 2px, 2px;
 	height: 100px;
 	width: 100px;
 	background-color: silver;
 }
 .card_c{
+    border: 2px solid white;
 	margin: 2px, 2px, 2px, 2px;
 	height: 100px;
 	width: 100px;
 	background-color: coral;
 }
 .card_p{
+    border: 2px solid white;
 	margin: 2px, 2px, 2px, 2px;
 	height: 100px;
 	width: 100px;
@@ -44,7 +48,6 @@ div {
 
 #main{
 	display: inline-block;
-
 }
 
 #res{
@@ -59,4 +62,12 @@ div {
 	height: 50px;
 	width: 200px;
 	border: 1px solid black;
+}
+#cards-count {
+    display: block;
+    height: 50px;
+	width: 50px;
+    background-color: blueviolet;
+    color:white;
+    font-size:40px;
 }
