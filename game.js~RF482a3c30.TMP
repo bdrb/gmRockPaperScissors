@@ -1,5 +1,3 @@
-var mePos = 0;
-var opPos = 0;
 var cardsCountMax = 10;
 var cardsCount = 3;
 var meCards = [];
@@ -102,7 +100,7 @@ var fightResult = function(me, op){
 
 var fight = function(){
 
-	for(var i = 0; i < cardsCount; i++){
+	for(var i = 0; i < meCards.length; i++){
 		if(meCards[i].state == 0)
 			return "check cards";
 	}
@@ -115,33 +113,27 @@ var fight = function(){
 			return "Ooo!!";
 
 	var res = "unknown";
-	if(opCards[opPos].state == 0){
-	    opCards[opPos].state = getRandomState();
+	if(opCards[0].state == 0){
+		opCards[0].state = getRandomState();
 	}
-	opCards[opPos].elem.css('background-color', getCardColor(opCards[opPos].state));
+	opCards[0].elem.css('background-color', getCardColor(opCards[0].state));
 
-	var res = fightResult(meCards[mePos].state, opCards[opPos].state);
+	var res = fightResult(meCards[0].state, opCards[0].state);
 
 	if(res == "win"){
-	    opCards[opPos].elem.fadeOut(1000);
-	    opPos++;
-		//opCards.shift();
+		opCards[0].elem.fadeOut(1000);
+		opCards.shift();
 	}
 	else if(res == "lose"){
-	    meCards[mePos].elem.fadeOut(1000);
-	    mePos++;
-		//meCards.shift();
+		meCards[0].elem.fadeOut(1000);
+		meCards.shift();
 	}
 	else{
-	    opCards[opPos].elem.fadeOut(1000);
-	    opPos++;
-		//opCards.shift();
-	    meCards[mePos].elem.fadeOut(1000);
-	    mePos++;
-	    
-		//meCards.shift();
+		opCards[0].elem.fadeOut(1000);
+		opCards.shift();
+		meCards[0].elem.fadeOut(1000);
+		meCards.shift();
 	}
-	
 	return res;
 }
 
@@ -220,26 +212,14 @@ $(document).ready(function()
     }
     $('#cards-count').html(cardsCount);
 
-    for (var i = cardsCountMax - 1 ; i >= 0 ; i--) {
-        $("#me-cards").append("<div id = 'me" + i + "' class = 'card'>"+ i +"</div>");
+    for (var i = cardsCount - 1 ; i >= 0 ; i--) {
+        $("#me-cards").append("<div id = 'me" + i + "' class = 'card'></div>");
         meCards[i] = new Card("me" + i, 0, $('#me' + i));
-        if (i >= cardsCount) {
-            meCards[i].elem.hide();
-        }
-        else {
-            meCards[i].elem.show();
-        }
     }
 
-    for (var i = 0 ; i < cardsCountMax ; i++) {
-        $("#op-cards").append("<div id = 'op" + i + "' class = 'card'>" + i + "</div>");
+    for (var i = 0 ; i < cardsCount ; i++) {
+        $("#op-cards").append("<div id = 'op" + i + "' class = 'card'></div>");
         opCards[i] = new Card("op" + i, 0, $('#op' + i));
-        if (i >= cardsCount) {
-            opCards[i].elem.hide();
-        }
-        else {
-            opCards[i].elem.show();
-        }
     }
 
 	
@@ -249,31 +229,11 @@ $(document).ready(function()
 		cardClick($(this).prop("id"));
 	});
     
-	$('#fight').click(function () {
-        
-	    fight();
-
-	    var res = "";
-	    if (mePos > opPos) {
-	        res = 'win';
-	    }
-	    else if (mePos < opPos) {
-	        res = 'lose';
-	    }
-	    else {
-            res = 'void';
-	    }
-
-
-
-        $('#res').html(res);
+    $('#fight').click(function(){
+        $('#res').html(fight());
     });
 
     $('#cards-count').click(function () {
-
-        mePos = 0;
-        opPos = 0;
-
         if (cardsCount == 10) {
             cardsCount = 1;
         }
@@ -283,22 +243,17 @@ $(document).ready(function()
 
         $('#cards-count').html(cardsCount);
         
+        meCards = [];
+        opCards = [];
+
         for (var i = cardsCount - 1 ; i >= 0 ; i--) {
-            if (i >= cardsCount) {
-                meCards[i].elem.hide();
-            }
-            else {
-                meCards[i].elem.show();
-            }
+            $("#me-cards").append("<div id = 'me" + i + "' class = '.card'></div>");
+            meCards[i] = new Card("me" + i, 0, $('#me' + i));
         }
 
         for (var i = 0 ; i < cardsCount ; i++) {
-            if (i >= cardsCount) {
-                opCards[i].elem.hide();
-            }
-            else {
-                opCards[i].elem.show();
-            }
+            $("#op-cards").append("<div id = 'op" + i + "' class = '.card'></div>");
+            opCards[i] = new Card("op" + i, 0, $('#op' + i));
         }
         
 
