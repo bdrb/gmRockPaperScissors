@@ -221,7 +221,7 @@ $(document).ready(function()
     $('#cards-count').html(cardsCount);
 
     for (var i = cardsCountMax - 1 ; i >= 0 ; i--) {
-        $("#me-cards").append("<div id = 'me" + i + "' class = 'card'>"+ i +"</div>");
+        $("#me-cards").append("<div id = 'me" + i + "' class = 'card'></div>");
         meCards[i] = new Card("me" + i, 0, $('#me' + i));
         if (i >= cardsCount) {
             meCards[i].elem.hide();
@@ -232,7 +232,7 @@ $(document).ready(function()
     }
 
     for (var i = 0 ; i < cardsCountMax ; i++) {
-        $("#op-cards").append("<div id = 'op" + i + "' class = 'card'>" + i + "</div>");
+        $("#op-cards").append("<div id = 'op" + i + "' class = 'card'></div>");
         opCards[i] = new Card("op" + i, 0, $('#op' + i));
         if (i >= cardsCount) {
             opCards[i].elem.hide();
@@ -284,6 +284,7 @@ $(document).ready(function()
         $('#cards-count').html(cardsCount);
         
         for (var i = cardsCount - 1 ; i >= 0 ; i--) {
+            meCards[i].state = 0;
             if (i >= cardsCount) {
                 meCards[i].elem.hide();
             }
@@ -293,6 +294,7 @@ $(document).ready(function()
         }
 
         for (var i = 0 ; i < cardsCount ; i++) {
+            opCards[i].state = 0;
             if (i >= cardsCount) {
                 opCards[i].elem.hide();
             }
@@ -303,4 +305,18 @@ $(document).ready(function()
         
 
     });
+
+    $('#fight').hover(function () {
+        $('#fight').toggleClass('hovered');
+    });
+
+    $('#cards-count').hover(function () {
+        $('#cards-count').toggleClass('hovered');
+    });
+
+    $('#me-cards .card').hover(function () {
+        $(this).toggleClass('hovered');
+    });
+
+    
 });
