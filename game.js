@@ -283,7 +283,7 @@ $(document).ready(function()
 
         $('#cards-count').html(cardsCount);
         
-        for (var i = cardsCount - 1 ; i >= 0 ; i--) {
+        for (var i = cardsCountMax - 1 ; i >= 0 ; i--) {
             meCards[i].state = 0;
             if (i >= cardsCount) {
                 meCards[i].elem.hide();
@@ -293,7 +293,7 @@ $(document).ready(function()
             }
         }
 
-        for (var i = 0 ; i < cardsCount ; i++) {
+        for (var i = 0 ; i < cardsCountMax ; i++) {
             opCards[i].state = 0;
             if (i >= cardsCount) {
                 opCards[i].elem.hide();
