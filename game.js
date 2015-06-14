@@ -284,6 +284,15 @@ $(document).ready(function()
         $('#cards-count').html(cardsCount);
         
         for (var i = cardsCountMax - 1 ; i >= 0 ; i--) {
+            if (meCards[i].elem.hasClass('card_s')) {
+                meCards[i].elem.removeClass('card_s');
+            }
+            if (meCards[i].elem.hasClass('card_c')) {
+                meCards[i].elem.removeClass('card_c');
+            }
+            if (meCards[i].elem.hasClass('card_p')) {
+                meCards[i].elem.removeClass('card_p');
+            }
             meCards[i].state = 0;
             if (i >= cardsCount) {
                 meCards[i].elem.hide();
@@ -294,6 +303,15 @@ $(document).ready(function()
         }
 
         for (var i = 0 ; i < cardsCountMax ; i++) {
+            if (opCards[i].elem.hasClass('card_s')) {
+                opCards[i].elem.removeClass('card_s');
+            }
+            if (opCards[i].elem.hasClass('card_c')) {
+                opCards[i].elem.removeClass('card_c');
+            }
+            if (opCards[i].elem.hasClass('card_p')) {
+                opCards[i].elem.removeClass('card_p');
+            }
             opCards[i].state = 0;
             if (i >= cardsCount) {
                 opCards[i].elem.hide();
